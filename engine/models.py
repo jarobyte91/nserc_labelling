@@ -1,17 +1,26 @@
 from engine import db
 
-class Query(db.Model):
+class LabelledExample(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String)
+    date = db.Column(db.String)
+    author = db.Column(db.String)
+    subreddit = db.Column(db.String)
+    post = db.Column(db.String)
+    gender = db.Column(db.Integer)
+    employment = db.Column(db.Integer)
+    student = db.Column(db.Integer)
+    immigrant = db.Column(db.Integer)
+    age = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<Query {}>'.format(self.id)
-
-class Response(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String)
-    summary = db.Column(db.String)
-    relevance = db.Column(db.Integer)
+        return '<LabelledExample {}>'.format(self.id)
+    
+class UnlabelledExample(db.Model):
+    index = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.String)
+    author = db.Column(db.String)
+    subreddit = db.Column(db.String)
+    post = db.Column(db.String)
 
     def __repr__(self):
-        return '<Response {}>'.format(self.id)
+        return '<UnlabelledExample {}>'.format(self.id)

@@ -1,2 +1,3 @@
-FLASK_APP=auto_summ.py
-FLASK_DEBUG=
+FLASK_APP=labelling.py
+FLASK_DEBUG=1
+

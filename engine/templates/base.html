@@ -1,16 +1,16 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - auto_summ</title>
+        <title>{{ title }} - Labelling</title>
         {% else %}
-        <title>Welcome to auto_summ</title>
+        <title>Labelling</title>
         {% endif %}
     </head>
-    <body>
+    <body style="font-family:'Helvetica';">
         <div>
-            auto_summ: 
-            <a href="{{ url_for('summarization') }}">Automatic Extractive Summarization</a>
-            <a href="{{ url_for('about_me') }}">About the author</a>
+            Labelling: 
+            <a href="{{ url_for('label') }}">Labelling</a>
+            <a href="{{ url_for('about_me') }}">About me</a>
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}

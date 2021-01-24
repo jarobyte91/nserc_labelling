@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Data exploration</h1>
+    <p><b>Date of the post:</b> {{ date }}</p>
+    <p><b>Author:</b> {{ author }}</p>
+    <p><b>Subreddit:</b> {{ subreddit }}</p>
+    <p><b>Post:</b></p>
+    {{ post|safe }}
+    <hr>
+    <div>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            
+            {{ form.gender.label }}<br>
+            {{ form.gender() }}<br>
+            
+            {{ form.employment.label }}<br>
+            {{ form.employment() }}<br>
+            
+            {{ form.age.label }} {{ form.age() }}<br>
+            
+            {{ form.student.label }}<br>
+            {{ form.student() }}<br>
+            
+            {{ form.immigrant.label }}<br>
+            {{ form.immigrant() }}<br>
+            
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+{% endblock %}
