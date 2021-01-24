@@ -22,6 +22,7 @@ def highlight(pattern, string, hl = "black"):
     return output
 
 @app.route("/")
+@app.route("/index")
 def index():
     return redirect(url_for("label"))
 
@@ -57,11 +58,12 @@ def label():
         db.session.delete(data)
         db.session.commit()
         flash("Thanks for your submission!")
-    redirect(url_for("label"))
-    return render_template("label.html", 
-                           date = date,
-                           author = author,
-                           subreddit = subreddit,
-                           post = post,
-                           form = form)
+        return redirect(url_for("index"))
+    else:
+        return render_template("label.html", 
+                               date = date,
+                               author = author,
+                               subreddit = subreddit,
+                               post = post,
+                               form = form)
     

@@ -11,19 +11,36 @@
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             
-            {{ form.gender.label }}<br>
-            {{ form.gender() }}<br>
+            {{ form.gender.label }}
+            {{ form.gender() }}
+            {% for error in form.gender.errors %}
+            <span style="color: red;">[Please select an option for the gender]</span><br>
+            {% endfor %}
             
-            {{ form.employment.label }}<br>
-            {{ form.employment() }}<br>
+            {{ form.employment.label }}
+            {{ form.employment() }}
+            {% for error in form.employment.errors %}
+            <span style="color: red;">[Please select an option for the employment]</span><br>
+            {% endfor %}
+            <br>
+            {{ form.age.label }}<br>
+            {{ form.age() }}<br>
+            {% for error in form.age.errors %}
+            <span style="color: red;">[Please input a valid age]</span><br>
+            {% endfor %}
+            <br>
             
-            {{ form.age.label }} {{ form.age() }}<br>
+            {{ form.student.label }}
+            {{ form.student() }}
+            {% for error in form.student.errors %}
+            <span style="color: red;">[Please select an option for the student status]</span><br>
+            {% endfor %}
             
-            {{ form.student.label }}<br>
-            {{ form.student() }}<br>
-            
-            {{ form.immigrant.label }}<br>
-            {{ form.immigrant() }}<br>
+            {{ form.immigrant.label }}
+            {{ form.immigrant() }}
+            {% for error in form.immigrant.errors %}
+            <span style="color: red;">[Please select an option for the immigration status]</span><br>
+            {% endfor %}
             
             <p>{{ form.submit() }}</p>
         </form>
