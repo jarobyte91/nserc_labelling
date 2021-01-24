@@ -12,35 +12,60 @@
             {{ form.hidden_tag() }}
             
             <b>{{ form.gender.label }}</b>
-            {{ form.gender() }}
-            {% for error in form.gender.errors %}
-            <span style="color: red;">[Please select an option for the gender]</span><br>
+             {% for subfield in form.gender %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
             {% endfor %}
+            {% for error in form.gender.errors %}
+            <span style="color: red;">[Please select an option for the gender]</span>
+            {% endfor %}
+            <br>
+            
             
             <b>{{ form.employment.label }}</b>
-            {{ form.employment() }}
+             {% for subfield in form.employment %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
             {% for error in form.employment.errors %}
-            <span style="color: red;">[Please select an option for the employment]</span><br>
+            <span style="color: red;">[Please select an option for the employment]</span>
             {% endfor %}
             <br>
-            <b>{{ form.age.label }}</b><br>
-            {{ form.age() }}<br>
+            
+            <b>{{ form.age.label }}</b>{{ form.age() }}
             {% for error in form.age.errors %}
-            <span style="color: red;">[Please input a valid age]</span><br>
+            <span style="color: red;">[Please input a valid age]</span>
             {% endfor %}
             <br>
+            
             
             <b>{{ form.student.label }}</b>
-            {{ form.student() }}
-            {% for error in form.student.errors %}
-            <span style="color: red;">[Please select an option for the student status]</span><br>
+             {% for subfield in form.student %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
             {% endfor %}
+            {% for error in form.student.errors %}
+            <span style="color: red;">[Please select an option for the student status]</span>
+            {% endfor %}
+            <br>
             
             <b>{{ form.immigrant.label }}</b>
-            {{ form.immigrant() }}
-            {% for error in form.immigrant.errors %}
-            <span style="color: red;">[Please select an option for the immigration status]</span><br>
+             {% for subfield in form.immigrant %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
             {% endfor %}
+            {% for error in form.immigrant.errors %}
+            <span style="color: red;">[Please select an option for the immigration status]</span>
+            {% endfor %}
+            <br>
             
             <p>{{ form.submit() }}</p>
         </form>
