@@ -1,3 +1,3 @@
-FLASK_APP=labelling.py
-FLASK_DEBUG=1
+FLASK_APP=app.py
+FLASK_DEBUG=0
 
