@@ -7,12 +7,12 @@ class LabelledExample(db.Model):
     author = db.Column(db.String)
     subreddit = db.Column(db.String)
     post = db.Column(db.String)
-    gender = db.Column(db.Integer)
-    employment = db.Column(db.Integer)
-    student = db.Column(db.Integer)
-    immigrant = db.Column(db.Integer)
-    age = db.Column(db.Integer)
-    relationship = db.Column(db.Integer)
+    gender = db.Column(db.String)
+    employment = db.Column(db.String)
+    student = db.Column(db.String)
+    immigrant = db.Column(db.String)
+    age = db.Column(db.String)
+    relationship = db.Column(db.String)
     psychology = db.Column(db.String)
 
     def __repr__(self):
