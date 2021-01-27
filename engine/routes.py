@@ -56,11 +56,10 @@ def label():
     date = data.date
     subreddit = data.subreddit
     post = data.post
-    db.session.delete(data)
-    db.session.commit()
+    original_text = data.post
     # highlight some patterns to improve readability
     ## age and sex
-    post = highlight(r"([0-9]{2})\s+(year(s)? old|years|yo)", post)
+    post = highlight(r"([0-9]{2})\s+(year(s)? old|years|yo)", post, )
     post = highlight(r"[Ii]\s?.m\s?[0-9]{2}\b", post)
     post = highlight(r"[0-9]{2}[mfMF]|[mfMF][0-9]{2}", post)
     post = highlight(r"([\(\[])([0-9mfMF\/\s]{3,})([\)\]])", post)
@@ -75,8 +74,8 @@ def label():
     ## relationships
     post = highlight(r"([Gg]irl|[Bb]oy)friend|[Ww]ife|[Hh]usband|BF|bf|GF|gf", post)
     ## psychology
-    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd|ocd|OCD|bpd|BPD", post, "red")
-    post = highlight(r"[Tt]herap(y|ist)|[Ss]upport|[Mm]edic(al)?", post, "red")
+    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd|ocd|OCD|bpd|BPD", post, "darkmagenta")
+    post = highlight(r"[Tt]herap(y|ist)|[Ss]upport|[Mm]edic(al)?", post, "darkmagenta")
     post = create_paragraphs(post)
     form = LabellingForm()
     if form.validate_on_submit():
@@ -85,7 +84,7 @@ def label():
                             date = date, 
                             author = author,
                             subreddit = subreddit,
-                            post = post,
+                            post = original_text,
                             gender = form.gender.data,
                             employment = form.employment.data,
                             student = form.student.data,
@@ -94,6 +93,7 @@ def label():
                             relationship = form.relationship.data,
                             psychology = form.psychology.data)
         db.session.add(r)
+        db.session.delete(data)
         db.session.commit()
         flash("Thanks for your submission!")
         return redirect(url_for("index"))
