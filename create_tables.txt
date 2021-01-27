@@ -5,12 +5,12 @@ CREATE TABLE labelled_example(
   author TEXT,
   subreddit TEXT,
   post TEXT,
-  gender INT,
-  employment INT,
-  student INT,
-  immigrant INT,
-  age INT,
-  relationship INT,
+  gender TEXT,
+  employment TEXT,
+  student TEXT,
+  immigrant TEXT,
+  age TEXT,
+  relationship TEXT,
   psychology TEXT
 );
 
