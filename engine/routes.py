@@ -4,6 +4,7 @@ from engine.forms import LabellingForm
 from engine.models import LabelledExample, UnlabelledExample
 import re
 from itertools import zip_longest
+import country_list
 
 def grouper(iterable, n, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
@@ -16,10 +17,8 @@ def create_paragraphs(text):
     text = text.replace("\n", " ")
     text = re.sub(r"\s+", " ", text)
     matches = re.split(sentence_pattern, text)
-    print(matches)
     if len(matches) > 5:
         g = list(grouper([p.strip() + "." for p in matches], 5, ""))
-        print(g)
         return "".join(["<p>" + " ".join(l) + "</p>" for l in g])
     else: 
         return text
@@ -60,10 +59,23 @@ def label():
     db.session.delete(data)
     db.session.commit()
     # highlight some patterns to improve readability
+    ## age and sex
     post = highlight(r"([0-9]{2})\s+(year(s)? old|years|yo)", post)
-    post = highlight(r"[\(\[]([0-9mfMF]{3})[\)\]]", post)
-    post = highlight(r"(work|lost my job|don't have a job|am unemployed|left my job)", post)
+    post = highlight(r"[Ii]\s?.m\s?[0-9]{2}\b", post)
+    post = highlight(r"([\(\[])([0-9mfMF\/\s]{3,})([\)\]])", post)
+    post = highlight(r"([Ff]e)?[Mm]ale", post)
+    ## employment
+    post = highlight(r"(work|(un)?employed|job)", post)
+    ## immigration
     post = highlight(r"I\s+(am|'m)\s+from", post)
+    post = highlight("|".join([country for code, country in country_list.countries_for_language("en")]), post)
+    ## student
+    post = highlight(r"[Ss]tudent|[Ss]chool|[Uu]niversity|[Cc]ollege", post)
+    ## relationships
+    post = highlight(r"([Gg]irl|[Bb]oy)friend|[Ww]ife|[Hh]usband|BF|bf|GF|gf", post)
+    ## psychology
+    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd", post)
+    post = highlight(r"[Tt]herapy|[Ss]upport", post)
     post = create_paragraphs(post)
     form = LabellingForm()
     if form.validate_on_submit():
@@ -76,7 +88,9 @@ def label():
                             employment = form.employment.data,
                             student = form.student.data,
                             immigrant = form.immigrant.data,
-                            age = form.immigrant.data)
+                            age = form.immigrant.data,
+                            relationship = form.relationship.data,
+                            psychology = form.psychology.data)
         db.session.add(r)
         db.session.commit()
         flash("Thanks for your submission!")
@@ -87,5 +101,6 @@ def label():
                                author = author,
                                subreddit = subreddit,
                                post = post,
-                               form = form)
+                               form = form,
+                               index = data.index)
     

@@ -2,9 +2,10 @@
 {% block content %}
     <h1>Data exploration</h1>
     <p><b>Date of the post:</b> {{ date }}</p>
+    <p><b>Post ID:</b> {{ index}}</p>
     <p><b>Author:</b> {{ author }}</p>
     <p><b>Subreddit:</b> {{ subreddit }}</p>
-    <p><b>Post:</b></p>
+    <h2>Post:</h2>
     {{ post|safe }}
     <hr>
     <div>
@@ -64,6 +65,24 @@
             {% endfor %}
             {% for error in form.immigrant.errors %}
             <span style="color: red;">[Please select an option for the immigration status]</span>
+            {% endfor %}
+            <br>
+            
+            <b>{{ form.relationship.label }}</b>
+             {% for subfield in form.relationship %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td>{{ subfield.label }}</td>
+            </tr>
+            {% endfor %}
+            {% for error in form.relationship.errors %}
+            <span style="color: red;">[Please select an option for the relationship status]</span>
+            {% endfor %}
+            <br>
+            
+            <b>(Fill this only if you know what you are doing) {{ form.psychology.label }}</b>{{ form.psychology() }}
+            {% for error in form.psychology.errors %}
+            <span style="color: red;">[Please input a psychological status]</span>
             {% endfor %}
             <br>
             

@@ -11,6 +11,8 @@ class LabelledExample(db.Model):
     student = db.Column(db.Integer)
     immigrant = db.Column(db.Integer)
     age = db.Column(db.Integer)
+    relationship = db.Column(db.Integer)
+    psychology = db.Column(db.String)
 
     def __repr__(self):
         return '<LabelledExample {}>'.format(self.index)
