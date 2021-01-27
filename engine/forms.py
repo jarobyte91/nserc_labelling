@@ -13,8 +13,9 @@ class LabellingForm(FlaskForm):
                              choices = [(1, "Employed"),
                                         (-1, "Unemployed"),
                                         (0, "Unknown")])
-    age = StringField("What is the age of the poster? (0 for unknown)",
-                       validators = [DataRequired()])
+    age = StringField("What is the age of the poster? (0 means unknown)",
+                      default = 0,
+                      validators = [DataRequired()])
     student =  RadioField("Is the poster a student?", 
                           validators = [DataRequired()],
                           choices = [(1, "Student"),

@@ -1,7 +1,7 @@
 from engine import db
 
 class LabelledExample(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    index = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String)
     author = db.Column(db.String)
     subreddit = db.Column(db.String)
@@ -13,7 +13,7 @@ class LabelledExample(db.Model):
     age = db.Column(db.Integer)
 
     def __repr__(self):
-        return '<LabelledExample {}>'.format(self.id)
+        return '<LabelledExample {}>'.format(self.index)
     
 class UnlabelledExample(db.Model):
     index = db.Column(db.Integer, primary_key=True)
@@ -23,4 +23,4 @@ class UnlabelledExample(db.Model):
     post = db.Column(db.String)
 
     def __repr__(self):
-        return '<UnlabelledExample {}>'.format(self.id)
+        return '<UnlabelledExample {}>'.format(self.index)
