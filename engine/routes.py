@@ -74,7 +74,7 @@ def label():
     ## relationships
     post = highlight(r"([Gg]irl|[Bb]oy)friend|[Ww]ife|[Hh]usband|BF|bf|GF|gf", post)
     ## psychology
-    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd", post)
+    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd|ocd|OCD", post)
     post = highlight(r"[Tt]herapy|[Ss]upport", post)
     post = create_paragraphs(post)
     form = LabellingForm()
