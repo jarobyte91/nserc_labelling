@@ -62,6 +62,7 @@ def label():
     ## age and sex
     post = highlight(r"([0-9]{2})\s+(year(s)? old|years|yo)", post)
     post = highlight(r"[Ii]\s?.m\s?[0-9]{2}\b", post)
+    post = highlight(r"[0-9]{2}[mfMF]|[mfMF][0-9]{2}", post)
     post = highlight(r"([\(\[])([0-9mfMF\/\s]{3,})([\)\]])", post)
     post = highlight(r"([Ff]e)?[Mm]ale", post)
     ## employment
@@ -74,12 +75,13 @@ def label():
     ## relationships
     post = highlight(r"([Gg]irl|[Bb]oy)friend|[Ww]ife|[Hh]usband|BF|bf|GF|gf", post)
     ## psychology
-    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd|ocd|OCD|bpd|BPD", post)
-    post = highlight(r"[Tt]herap(y|ist)|[Ss]upport|[Mm]edic(al)?", post)
+    post = highlight(r"[Aa]nxi(ety|ous)|[Dd]epress(ion|ed)|[Ss]uicid(e|al)|[Aa]ddict(ion|ed)?|[Ss]tress(ed)?|ADHD|adhd|PTSD|ptsd|ocd|OCD|bpd|BPD", post, "red")
+    post = highlight(r"[Tt]herap(y|ist)|[Ss]upport|[Mm]edic(al)?", post, "red")
     post = create_paragraphs(post)
     form = LabellingForm()
     if form.validate_on_submit():
-        r = LabelledExample(index = LabelledExample.query.count() + 1, 
+        r = LabelledExample(id = LabelledExample.query.count() + 1, 
+                            original_index = data.index,
                             date = date, 
                             author = author,
                             subreddit = subreddit,

@@ -1,7 +1,8 @@
 from engine import db
 
 class LabelledExample(db.Model):
-    index = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
+    original_index = db.Column(db.Integer)
     date = db.Column(db.String)
     author = db.Column(db.String)
     subreddit = db.Column(db.String)

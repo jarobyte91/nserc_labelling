@@ -6,6 +6,7 @@
     <p><b>Author:</b> {{ author }}</p>
     <p><b>Subreddit:</b> {{ subreddit }}</p>
     <h2>Post:</h2>
+    <p><b>Note: the highlights are there just to help you notice some information more easily.</b></p>
     {{ post|safe }}
     <hr>
     <div>
@@ -80,7 +81,7 @@
             {% endfor %}
             <br>
             
-            <b>(Fill this only if you know what you are doing) {{ form.psychology.label }}</b>{{ form.psychology() }}
+            <span style="color: red;font-weight:bold">(Fill this only if you are a professional)</span> <b>{{ form.psychology.label }}</b> {{ form.psychology() }}
             {% for error in form.psychology.errors %}
             <span style="color: red;">[Please input a psychological status]</span>
             {% endfor %}

@@ -1,0 +1,23 @@
+CREATE TABLE labelled_example(
+  id INT PRIMARY KEY,
+  original_index INT,
+  date TEXT,
+  author TEXT,
+  subreddit TEXT,
+  post TEXT,
+  gender INT,
+  employment INT,
+  student INT,
+  immigrant INT,
+  age INT,
+  relationship INT,
+  psychology TEXT
+);
+
+CREATE TABLE unlabelled_example(
+  id INT PRIMARY KEY,
+  date TEXT,
+  author TEXT,
+  subreddit TEXT,
+  post TEXT
+);
