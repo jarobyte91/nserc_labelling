@@ -89,7 +89,7 @@ def label():
                             employment = form.employment.data,
                             student = form.student.data,
                             immigrant = form.immigrant.data,
-                            age = form.immigrant.data,
+                            age = form.age.data,
                             relationship = form.relationship.data,
                             psychology = form.psychology.data)
         db.session.add(r)
