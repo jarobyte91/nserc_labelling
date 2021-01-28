@@ -5,6 +5,7 @@ from engine.models import LabelledExample, UnlabelledExample
 import re
 from itertools import zip_longest
 import country_list
+from random import choice
 
 def grouper(iterable, n, fillvalue=None):
     "Collect data into fixed-length chunks or blocks"
@@ -51,7 +52,7 @@ def about_me():
 
 @app.route("/label", methods = ["GET", "POST"])
 def label():
-    data = UnlabelledExample.query.first()
+    data = choice(UnlabelledExample.query.all())
     author = data.author
     date = data.date
     subreddit = data.subreddit
@@ -98,6 +99,7 @@ def label():
         flash("Thanks for your submission!")
         return redirect(url_for("index"))
     else:
+        # flash("There was a problem with your submission, showing a new example")
         return render_template("label.html", 
                                date = date,
                                author = author,
